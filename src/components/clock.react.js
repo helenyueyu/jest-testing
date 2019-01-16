@@ -1,0 +1,32 @@
+import React, { Component } from 'react'
+
+class Clock extends Component {
+  constructor() {
+    super()
+    this.state = {
+      seconds: Date.now() / 1000
+    }
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(() => this.tick(), 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID)
+  }
+
+  tick() {
+    this.setState({
+      seconds: Date.now() / 1000
+    })
+  }
+
+  render() {
+    return (
+      <p>{this.state.seconds} seconds have elapsed since the UNIX epoch.</p>
+    )
+  }
+}
+
+export default Clock
